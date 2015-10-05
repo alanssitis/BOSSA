@@ -1,5 +1,8 @@
 BOSSA 1.2
 
+This is a clone of the BOSSA repo, but it only builds the command-line 'bossac' program. Any files related to the GUI or Shell version have been removed, and the
+makefile modified to simplify building (doesn't require wx).
+
 FILES
 -----
 bossa-1.2.msi -- Windows 2000+

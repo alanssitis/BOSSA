@@ -10,10 +10,7 @@ VERSION=1.2.1
 #
 COMMON_SRCS=Samba.cpp Flash.cpp EfcFlash.cpp EefcFlash.cpp FlashFactory.cpp Applet.cpp WordCopyApplet.cpp Flasher.cpp
 APPLET_SRCS=WordCopyArm.asm
-BOSSA_SRCS=BossaForm.cpp BossaWindow.cpp BossaAbout.cpp BossaApp.cpp BossaBitmaps.cpp BossaInfo.cpp BossaThread.cpp BossaProgress.cpp
-BOSSA_BMPS=BossaLogo.bmp BossaIcon.bmp ShumaTechLogo.bmp
 BOSSAC_SRCS=bossac.cpp CmdOpts.cpp
-BOSSASH_SRCS=bossash.cpp Shell.cpp Command.cpp
 
 #
 # Build directories
@@ -142,7 +139,7 @@ ARMOBJCOPY=$(ARM)objcopy
 # CXX Flags
 #
 COMMON_CXXFLAGS+=-Wall -Werror -MT $@ -MD -MP -MF $(@:%.o=%.d) -DVERSION=\"$(VERSION)\" -g -O2
-WX_CXXFLAGS:=$(shell wx-config --cxxflags) -DWX_PRECOMP -Wno-ctor-dtor-privacy -O2 -fno-strict-aliasing
+WX_CXXFLAGS:=-Wno-ctor-dtor-privacy -O2 -fno-strict-aliasing
 BOSSA_CXXFLAGS=$(COMMON_CXXFLAGS) $(WX_CXXFLAGS) 
 BOSSAC_CXXFLAGS=$(COMMON_CXXFLAGS)
 BOSSASH_CXXFLAGS=$(COMMON_CXXFLAGS)
@@ -159,7 +156,7 @@ BOSSASH_LDFLAGS=$(COMMON_LDFLAGS)
 # Libs
 #
 COMMON_LIBS+=
-WX_LIBS:=$(shell wx-config --libs) $(WX_LIBS)
+WX_LIBS=
 BOSSA_LIBS=$(COMMON_LIBS) $(WX_LIBS)
 BOSSAC_LIBS=$(COMMON_LIBS)
 BOSSASH_LIBS=-lreadline $(COMMON_LIBS)
@@ -167,7 +164,7 @@ BOSSASH_LIBS=-lreadline $(COMMON_LIBS)
 #
 # Main targets
 #
-all: $(BINDIR)/bossa$(EXE) $(BINDIR)/bossac$(EXE) $(BINDIR)/bossash$(EXE)
+all: $(BINDIR)/bossac$(EXE)
 
 #
 # Common rules
